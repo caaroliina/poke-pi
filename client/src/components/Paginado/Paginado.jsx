@@ -1,5 +1,5 @@
 import React from 'react';
-import style from './Pagination.module.css';
+import style from './Paginado.module.css';
 
 const Pagination = ({ thisPage, totalPages, pageChange }) => {
   const handlePrePage = () => {
@@ -28,13 +28,13 @@ const Pagination = ({ thisPage, totalPages, pageChange }) => {
   return (
     <div className={style.container}>
       {showPrevButton && (
-        <button onClick={handlePrePage} className={style.pag}>
+        <button onClick={handlePrePage} className={style.prevNext}>
           Previous
         </button>
       )}
       {Array.from({ length: endPage - startPage + 1 }, (_, index) => startPage + index).map((page) => (
         <button
-          className={style.pag}
+          className={style.pagNum}
           key={page}
           onClick={() => handlePageOnClick(page)}
           disabled={thisPage === page}
@@ -43,7 +43,7 @@ const Pagination = ({ thisPage, totalPages, pageChange }) => {
         </button>
       ))}
       {showNextButton && (
-        <button onClick={handleNextPage} className={style.pag}>
+        <button onClick={handleNextPage} className={style.prevNext}>
           Next
         </button>
       )}

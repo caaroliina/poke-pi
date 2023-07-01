@@ -7,7 +7,8 @@ function process(poke) {
     id: poke.data.id,
     name:  poke.data.name.charAt(0).toUpperCase() + poke.data.name.slice(1).toLowerCase(),
     
-    image: poke.data['sprites']['versions']['generation-v']['black-white']['animated']['front_default'] || poke.data.sprites.front_default,
+    image: poke.data['sprites']['other']['official-artwork']['front_default'] || poke.data.sprites.front_default,
+    // ['versions']['generation-v']['black-white']['animated']['front_default'] || poke.data.sprites.front_default,
     height: poke.data.height,
     weight: poke.data.weight,
     hp: poke.data.stats.find((element) => element.stat.name === "hp").base_stat,

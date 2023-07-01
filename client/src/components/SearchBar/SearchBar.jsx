@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import style from './SearchBar.module.css';
 
 const SearchBar = () => {
     const [pokemonName, setPokemonName] = useState("");
@@ -24,14 +25,15 @@ const SearchBar = () => {
     };
 
     return(
-        <div>
+        <div className={style.container}>
             <input
                 placeholder="Search Pokemon"
                 type="search"
                 value={pokemonName}
                 onChange={handleChange}
+                className={style.input}
             />
-            <button type="button" onClick={searchPokemon}>
+            <button type="button" onClick={searchPokemon} className={style.button}>
                 Search
             </button>
         </div>

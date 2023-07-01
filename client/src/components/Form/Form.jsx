@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import validate from "./Validate";
 import { getTypes, createPokemon, getPokemons } from "../../redux/action";
 import { useNavigate } from "react-router-dom";
+import style from './Form.module.css';
 
 const Form = () => {
     const types = useSelector((state) => state.types);
@@ -56,7 +57,7 @@ const Form = () => {
         }
     };
 
-const submitHandler = (event) => {
+    const submitHandler = (event) => {
     event.preventDefault();
     const NewPoke = {
         name: form.name.toLowerCase(),
@@ -69,121 +70,186 @@ const submitHandler = (event) => {
         weight: Number(form.weight),
         types: form.types,
     };
-        alert(`A Wild ${form.name} has Appeared`);
+        alert(`Wild ${form.name} appeared`);
         dispatch(createPokemon(NewPoke));
         dispatch(getPokemons());
         navigate("/home");
     };
 
     return (
-        <div>
-            <h1>Form</h1>
+        <div className={style.container}>
+            <h2 className={style.title}>Create a Pokemon</h2>
             <form onSubmit={submitHandler}>
-                <div>
-                    <label>name: </label>
-                    <input
-                        type="text"
-                        value={form.name}
-                        onChange={changeHandler}
-                        name="name"
-                    />
+                <div className={style.form}>
+                    <div className={style.data}>
+                        <div className={style.label}>
+                            <label>Name</label>
+                        </div>
+                        <div className={style.setError}>
+                            <input
+                                className={style.input}
+                                type="text"
+                                value={form.name}
+                                onChange={changeHandler}
+                                name="name"
+                            />
+                            <div className={style.error}>
+                                {errors.name && <p>{errors.name}</p>}
+                            </div>
+                        </div>
+                    </div>
+                    <div className={style.data}>
+                        <div className={style.label}>
+                            <label>HP</label>
+                        </div>
+                        <div className={style.setError}>
+                            <input
+                                className={style.input}
+                                type="text"
+                                value={form.hp}
+                                onChange={changeHandler}
+                                name="hp"
+                            />
+                            <div className={style.error}>
+                                {errors.hp && <p>{errors.hp}</p>}
+                            </div>
+                        </div>
+                    </div>
+                    <div className={style.data}>
+                        <div className={style.label}>
+                            <label>Attack</label>
+                        </div>
+                        <div className={style.setError}>
+                            <input
+                                className={style.input}
+                                type="text"
+                                value={form.attack}
+                                onChange={changeHandler}
+                                name="attack"
+                            />
+                            <div className={style.error}>
+                                {errors.attack && <p>{errors.attack}</p>}
+                            </div>
+                        </div>
+                    </div>
+                    <div className={style.data}>
+                        <div className={style.label}>
+                            <label>Defense</label>
+                        </div>
+                        <div className={style.setError}>
+                            <input
+                                className={style.input}
+                                type="text"
+                                value={form.defense}
+                                onChange={changeHandler}
+                                name="defense"
+                            />
+                            <div className={style.error}>
+                                {errors.defense && <p>{errors.defense}</p>}
+                            </div>
+                        </div>
+                    </div>
+                    <div className={style.data}>
+                        <div className={style.label}>
+                            <label>Speed</label>
+                        </div>
+                        <div className={style.setError}>
+                            <input
+                                className={style.input}
+                                type="text"
+                                value={form.speed}
+                                onChange={changeHandler}
+                                name="speed"
+                            />
+                            <div className={style.error}>
+                                {errors.speed && <p>{errors.speed}</p>}
+                            </div>
+                        </div>
+                    </div>
+                    <div className={style.data}>
+                        <div className={style.label}>
+                            <label>Weight</label>
+                        </div>
+                        <div className={style.setError}>
+                            <input
+                                className={style.input}
+                                type="text"
+                                value={form.weight}
+                                onChange={changeHandler}
+                                name="weight"
+                            />
+                            <div className={style.error}>
+                                {errors.weight && <p>{errors.weight}</p>}
+                            </div>
+                        </div>
+                    </div>
+                    <div className={style.data}>
+                        <div className={style.label}>
+                            <label>Height</label>
+                        </div>
+                        <div className={style.setError}>
+                            <input
+                                className={style.input}
+                                type="text"
+                                value={form.height}
+                                onChange={changeHandler}
+                                name="height"
+                            />
+                            <div className={style.error}>
+                                {errors.height && <p>{errors.height}</p>}
+                            </div>
+                        </div>
+                    </div>
+                    <div className={style.data}>
+                        <div className={style.label}>
+                            <label>Image</label>
+                        </div>
+                        <div className={style.setError}>
+                            <input
+                                className={style.input}
+                                type="text"
+                                value={form.image}
+                                onChange={changeHandler}
+                                name="image"
+                            />
+                            <div className={style.error}>
+                                {errors.image && <p>{errors.image}</p>}
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                {errors.name && <p>{errors.name}</p>}
-                <div>
-                    <label>hp: </label>
-                    <input
-                        type="text"
-                        value={form.hp}
-                        onChange={changeHandler}
-                        name="hp"
-                    />
-                </div>
-                {errors.hp && <p>{errors.hp}</p>}
-                <div>
-                    <label>attack: </label>
-                    <input
-                        type="text"
-                        value={form.attack}
-                        onChange={changeHandler}
-                        name="attack"
-                    />
-                </div>
-                {errors.attack && <p>{errors.attack}</p>}
-                <div>
-                    <label>defense: </label>
-                    <input
-                        type="text"
-                        value={form.defense}
-                        onChange={changeHandler}
-                        name="defense"
-                    />
-                </div>
-                {errors.defense && <p>{errors.defense}</p>}
-                <div>
-                    <label>speed: </label>
-                    <input
-                        type="text"
-                        value={form.speed}
-                        onChange={changeHandler}
-                        name="speed"
-                    />
-                </div>
-                {errors.speed && <p>{errors.speed}</p>}
-                <div>
-                    <label>weight: </label>
-                    <input
-                        type="text"
-                        value={form.weight}
-                        onChange={changeHandler}
-                        name="weight"
-                    />
-                </div>
-                {errors.weight && <p>{errors.weight}</p>}
-                <div>
-                    <label>height: </label>
-                    <input
-                        type="text"
-                        value={form.height}
-                        onChange={changeHandler}
-                        name="height"
-                    />
-                </div>
-                {errors.height && <p>{errors.height}</p>}
-                <div>
-                    <label>image: </label>
-                    <input
-                        type="text"
-                        value={form.image}
-                        onChange={changeHandler}
-                        name="image"
-                    />
-                </div>
-                {errors.image && <p>{errors.image}</p>}
-                <div>
-                    <label>type 1: </label>
-                    <select name="type 1" onChange={(select) => selectHandler(select)}>
-                        {types?.map((type) => (
-                        <option value={type.name} key={type.name}>
-                            {type.name}
-                        </option>
-                        ))}
-                    </select>
+                <div  className={style.data}>
+                    <div className={style.select}>
+                        <label>Select Type</label>
+                    </div>
+                    <div>
+                        <select className={style.input} name="type 1" onChange={(select) => selectHandler(select)}>
+                            {types?.map((type) => (
+                            <option value={type.name} key={type.name}>
+                                {type.name}
+                            </option>
+                            ))}
+                        </select>
+                    </div>
                 </div>
                 {form.types.length > 0 ? (
-                <div>
-                    <label>type 2: </label>
-                    <select name="type 2" onChange={(select) => selectHandler(select)}>
-                    {types.map((type) => (
-                        <option value={type.name} key={type.name}>
-                        {type.name}
-                        </option>
-                    ))}
-                    </select>
-                </div>
-                ) : (
-                <div></div>
+                    <div className={style.data}>
+                        <label className={style.select}>Select Type 2</label>
+                        
+                        <select name="type 2" onChange={(select) => selectHandler(select)}>
+                        {types.map((type) => (
+                            <option value={type.name} key={type.name}>
+                            {type.name}
+                            </option>
+                        ))}
+                        </select>
+                    </div>
+                    ) : (
+                    <div></div>
                 )}
-                <button type="submit">SUBMIT</button>
+                <div className={style.buttonContainer}>
+                    <button type="submit" className={style.button}>SUBMIT</button>
+                </div>
             </form>
         </div>
     )

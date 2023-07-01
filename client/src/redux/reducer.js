@@ -2,13 +2,22 @@ import {
     GET_POKEMONS,
     GET_POKEMON_ID,
     GET_TYPES,
-    POST_POKEMON
+    POST_POKEMON,
+    SET_PAGE,
+    SET_TOTAL_PAGES,
   } from "./action-type";
   
   const initialState = {
     pokemons: [],
     detail: {},
-    types: []
+    types: [],
+    pagination: {
+      thisPage: 1,
+      totalPages: 0,
+      totalItems: 0,
+      itemsPerPage: 12,
+      currentPageItems: [],
+    },
   };
   
   const reducer = (state = initialState, action) => {
@@ -21,6 +30,16 @@ import {
         return { ...state, types: action.payload };
       case POST_POKEMON:
         return { ...state, pokemons: action.payload };
+      case SET_PAGE:
+        return {
+          ...state,
+          pagination: { ...state.pagination, thisPage: action.payload },
+        };
+      case SET_TOTAL_PAGES:
+        return {
+          ...state,
+          pagination: { ...state.pagination, totalPages: action.payload },
+        };
       default:
         return { ...state };
     }

@@ -4,7 +4,9 @@ import {
   GET_POKEMON_BYNAME,
   GET_POKEMON_ID,
   GET_TYPES,
-  POST_POKEMON
+  POST_POKEMON,
+  SET_PAGE,
+  SET_TOTAL_PAGES,
 } from "./action-type";
 
 
@@ -13,6 +15,10 @@ export const getPokemons = () => {
     const apiPokemon = await axios.get("http://localhost:3001/pokemon/");
     const pokemon = apiPokemon.data;
     dispatch({ type: GET_POKEMONS, payload: pokemon });
+    const totalItems = pokemon.length;
+    const itemsPerPage = getState().pagination.itemsPerPage;
+    const totalPages = Math.ceil(totalItems / itemsPerPage);
+    dispatch({ type: SET_TOTAL_PAGES, payload: totalPages });
   };
 };
 
@@ -50,3 +56,8 @@ export const createPokemon = (form) => {
     dispatch({ type: POST_POKEMON, payload: newPokemon });
   };
 };
+
+export const setPage = (page) => ({
+  type: SET_PAGE,
+  payload: page,
+});

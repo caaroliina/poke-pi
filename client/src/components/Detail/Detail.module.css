@@ -1,0 +1,147 @@
+.container{
+    width: 90vw;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 3em;
+    background: #eeeeee;
+    padding: 1em;
+}
+
+.name{
+    width: 100vw;
+    height: 10%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.detail{
+    width: 90%;
+    height: 30%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin: 1em 0 0;
+}
+
+.img{
+    width: 30%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 2em 2em;
+}
+
+.data{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    width: 30%;
+    height: 80%;
+}
+
+.statsContainer{
+    display: flex;
+    /* justify-content: center; */
+    align-items: center;
+}
+
+.statsName{
+    display: flex;
+    font-size: 1.5em;
+    margin: 0 1em 0.5em;
+    width: 90%;
+}
+.statsNumber{
+    display: flex;
+    
+    font-size: 1.5em;
+    margin: 0 1em 0.5em;
+    width: 10%;
+}
+
+.types{
+    display: flex;
+    align-items: center;
+    /* justify-content: center; */
+}
+
+.types span{
+    display: flex;
+    font-size: 1.5em;
+    margin: 0 1em 0.5em;
+}
+
+.normal {
+    background-color: aqua;
+}
+
+.fire {
+    background-color: aqua;
+}
+
+.water{
+    background-color: aqua;
+}
+
+.electric{
+    background-color: aqua;
+}
+
+.grass{
+    background-color: aqua;
+}
+
+.ice {
+    background-color: aqua;
+}
+
+.fighting {
+    background-color: aqua;
+}
+
+.poison {
+    background-color: aqua;
+}
+
+.ground {
+    background-color: aqua;
+}
+
+.flying {
+    background-color: aqua;
+}
+
+.psychic{
+    background-color: aqua;
+}
+
+.bug {
+    background-color: aqua;
+}
+
+.rock{
+    background-color: aqua;
+}
+
+.ghost {
+    background-color: aqua;
+}
+
+.dragon{
+    background-color: aqua;
+}
+
+.dark{
+    background-color: aqua;
+}
+
+.steel{
+    background-color: aqua;
+}
+
+.fairy {
+    background-color: aqua;
+}
