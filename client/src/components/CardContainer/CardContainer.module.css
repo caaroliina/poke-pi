@@ -4,8 +4,35 @@
 }
 
 .container{
-    width: 100%;
+    width: 100vw;
     height: 100%;
+}
+
+.loading{
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+.load{
+    width: 30em;
+    height: 30em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    background: #42b883a9;
+    border-radius: 5em;
+}
+
+.load h1{
+    margin: 1rem;
+}
+
+.load img{
+    border-radius: 2em;
 }
 
 .filters{

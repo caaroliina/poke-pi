@@ -10,44 +10,31 @@ export default function validate(form){
 
     // hp
     const hp = parseInt(form.hp);
-    if (isNaN(hp) || hp < 1 || hp > 255) {
-        error.hp = "HP should be between 1 and 255";
-    }
+    if (isNaN(hp) || hp < 1 || hp > 255) error.hp = "HP should be between 1 and 255";
 
     // attack
     const attack = parseInt(form.attack);
-    if (isNaN(attack) || attack < 1 || attack > 255) {
-        error.attack = "attack should be between 1 and 255";
-    }
+    if (isNaN(attack) || attack < 1 || attack > 255) error.attack = "attack should be between 1 and 255";
 
     // defense
     const defense = parseInt(form.defense);
-    if (isNaN(defense) || defense < 1 || defense > 255) {
-        error.defense = "Defense should be between 1 and 255";
-    }
+    if (isNaN(defense) || defense < 1 || defense > 255) error.defense = "Defense should be between 1 and 255";
 
     // speed
     const speed = parseInt(form.speed);
-    if (isNaN(speed) || speed < 1 || speed > 255) {
-        error.speed = "Speed should be between 1 and 255";
-    }
+    if (isNaN(speed) || speed < 1 || speed > 255) error.speed = "Speed should be between 1 and 255";
 
     // weight
     const weight = parseInt(form.weight);
-    if (isNaN(weight) || weight < 1 || weight > 100) {
-        error.weight = "Weight should be between 1 and 100";
-    }
+    if (isNaN(weight) || weight < 1 || weight > 100) error.weight = "Weight should be between 1 and 100";
+
     // height
     const height = parseInt(form.height);
-    if (isNaN(height) || height < 1 || height > 100) {
-        error.height = "Height should be between 1 and 100";
-    }
+    if (isNaN(height) || height < 1 || height > 100) error.height = "Height should be between 1 and 100";
 
     // image
     const urlRegex = /(http(s?):)([/|.|\w|\s|-])*\.(?:jpg|gif|png)/;
-    if (!urlRegex.test(form.img)) {
-        error.img = "Invalid URL";
-    }
+    if (!urlRegex.test(form.img)) error.img = "Invalid URL";
 
     // types
     // if (!form.types.length) {

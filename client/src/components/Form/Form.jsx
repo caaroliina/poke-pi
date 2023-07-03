@@ -6,14 +6,13 @@ import { useNavigate } from "react-router-dom";
 import style from './Form.module.css';
 
 const Form = () => {
-    const types = useSelector((state) => state.types);
     const navigate = useNavigate();
     const dispatch = useDispatch();
+    
+    // global state
+    const types = useSelector((state) => state.types);
 
-    useEffect(() => {
-        dispatch(getTypes());
-    }, [dispatch]);
-
+    //locals states
     const [form, setForm] = useState({
         name: "",
         image: "",
@@ -28,26 +27,36 @@ const Form = () => {
 
     const [errors, setErrors] = useState({});
 
+    const [availableTypes2, setAvailableTypes2] = useState([]);
+
+    useEffect(() => {
+        dispatch(getTypes());
+    }, [dispatch]);
+    
     const changeHandler = (event) => {
-    setForm({
-        ...form,
-        [event.target.name]: event.target.value,
-    });
-    setErrors(
-        validate({
+        const { name, value } = event.target;
+        setForm((prevForm) => ({
+            ...prevForm,
+            [name]: value,
+        }));
+    
+        setErrors(validate({
             ...form,
-            [event.target.name]: event.target.value,
-        })
-    );
+            [name]: value,
+        }));
     };
 
     const selectHandler = (event) => {
         if (event.target.name === "type 1") {
+            const type1 = event.target.value;
             setForm((prevForm) => ({
-            ...prevForm,
-            types: [event.target.value, prevForm.types[1] || ""],
-        }));
+                ...prevForm,
+                types: [type1, prevForm.types[1] || ""],
+            }));
+            const availableTypes = types.filter((type) => type.name !== type1);
+            setAvailableTypes2(availableTypes);
         }
+        
 
         if (event.target.name === "type 2") {
             setForm((prevForm) => ({
@@ -58,22 +67,33 @@ const Form = () => {
     };
 
     const submitHandler = (event) => {
-    event.preventDefault();
-    const NewPoke = {
-        name: form.name.toLowerCase(),
-        sprites: form.image,
-        hp: Number(form.hp),
-        attack: Number(form.attack),
-        defense: Number(form.defense),
-        speed: Number(form.speed),
-        height: Number(form.height),
-        weight: Number(form.weight),
-        types: form.types,
-    };
-        alert(`Wild ${form.name} appeared`);
-        dispatch(createPokemon(NewPoke));
-        dispatch(getPokemons());
-        navigate("/home");
+        event.preventDefault();
+
+        if (Object.keys(errors).length > 0) {
+            alert('Please complete the form');
+            return;
+        }
+
+        const NewPoke = {
+            name: form.name.toLowerCase(),
+            sprites: form.image,
+            hp: Number(form.hp),
+            attack: Number(form.attack),
+            defense: Number(form.defense),
+            speed: Number(form.speed),
+            height: Number(form.height),
+            weight: Number(form.weight),
+            types: form.types,
+        };
+
+        try {
+            alert(`Wild ${form.name} appeared`);
+            dispatch(createPokemon(NewPoke));
+            dispatch(getPokemons());
+            navigate("/home");
+        } catch (error) {
+            alert('Please complete the form');
+        }
     };
 
     return (
@@ -225,21 +245,27 @@ const Form = () => {
                     <div>
                         <select className={style.input} name="type 1" onChange={(select) => selectHandler(select)}>
                             {types?.map((type) => (
-                            <option value={type.name} key={type.name}>
-                                {type.name}
-                            </option>
+                                <option value={type.name} key={type.name}>
+                                    {type.name}
+                                </option>
                             ))}
                         </select>
                     </div>
                 </div>
-                {form.types.length > 0 ? (
+                
+                {form.types.length > 0 ?  (
                     <div className={style.data}>
                         <label className={style.select}>Select Type 2</label>
                         
-                        <select name="type 2" onChange={(select) => selectHandler(select)}>
-                        {types.map((type) => (
+                        <select className={style.input} name="type 2" onChange={(select) => selectHandler(select)}>
+                        {availableTypes2?.map((type) => (
+                            type ===  form.types ?
                             <option value={type.name} key={type.name}>
-                            {type.name}
+                                {type.name}
+                            </option>
+                            :
+                            <option value={type.name} key={type.name}>
+                                {type.name}
                             </option>
                         ))}
                         </select>
@@ -247,6 +273,14 @@ const Form = () => {
                     ) : (
                     <div></div>
                 )}
+                <div className={style.renderTypes}>
+                    {form.types.length > 0 && 
+                    form.types.map((type) => (
+                        <div className={style.type}>
+                            {type}
+                        </div>)
+                    )}
+                </div>
                 <div className={style.buttonContainer}>
                     <button type="submit" className={style.button}>SUBMIT</button>
                 </div>

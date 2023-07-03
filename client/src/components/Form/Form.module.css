@@ -48,6 +48,18 @@
     display: flex;
 }
 
+.renderTypes{
+    width: 24em;
+    height: 2.5em;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+}
+
+.type{
+    margin: 1rem;
+}
+
 .buttonContainer{
     display: flex;
     align-items: center;

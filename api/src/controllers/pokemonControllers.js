@@ -59,7 +59,7 @@ const getPokemons = async () => {
 
 
   const apiPokemons = (
-    await axios.get("https://pokeapi.co/api/v2/pokemon?limit=80")
+    await axios.get("https://pokeapi.co/api/v2/pokemon?limit=400")
   ).data.results;
   const apiPokemonsUrl = await Promise.all(
     apiPokemons.map(async (element) => {

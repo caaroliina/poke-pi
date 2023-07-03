@@ -8,9 +8,15 @@
     margin: 1em;
 }
 
+.img{
+    width: 2em;
+    height: 2em;
+    margin: 0 1rem;
+}
+
 .link{
     color: aliceblue;
-    width: 15em;
+    width: 11em;
     height: 1.7em;
     display: flex;
     justify-content: center;
@@ -19,7 +25,7 @@
 }
 
 .link:hover{
-    width: 15em;
+    width: 11em;
     height: 1.7em;
     background: #004445;
     border-radius: 1em;

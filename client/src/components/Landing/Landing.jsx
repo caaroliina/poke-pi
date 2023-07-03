@@ -4,7 +4,8 @@ import style from './Landing.module.css'
 const Landing = () => {
     return (
         <div className={style.container}>
-            <NavLink to="/home"> anda a home loco </NavLink>
+            <h1 className={style.title}>Press in the middle of the pokeball</h1>
+            <NavLink to="/home" className={style.link}></NavLink>
         </div>
     )
 }
