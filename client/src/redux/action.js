@@ -9,7 +9,6 @@ import {
   SET_TOTAL_PAGES,
 } from "./action-type";
 
-
 export const getPokemons = () => {
   return async function (dispatch, getState) {
     const apiPokemon = await axios.get("http://localhost:3001/pokemon/");

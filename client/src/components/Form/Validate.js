@@ -3,7 +3,7 @@ export default function validate(form){
 
     // name
     if (!form.name.length) {
-        error.name = "the name must not be empty";
+        error.name = "The name must not be empty";
     } else if (!/^[a-zA-Z]+$/.test(form.name)) {
         error.name = "There is an error in the name";
     }
@@ -37,8 +37,7 @@ export default function validate(form){
     if (!urlRegex.test(form.img)) error.img = "Invalid URL";
 
     // types
-    // if (!form.types.length) {
-    //     error.types = "Enter a type name";
+    if (!form.types.length) error.types = "Enter a type name";
     // } else if (!/^[a-zA-Z]+$/.test(form.name)) {
     //     error.types = "There is an error in the type name";
     // }

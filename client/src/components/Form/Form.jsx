@@ -39,7 +39,7 @@ const Form = () => {
             ...prevForm,
             [name]: value,
         }));
-    
+
         setErrors(validate({
             ...form,
             [name]: value,
@@ -69,10 +69,10 @@ const Form = () => {
     const submitHandler = (event) => {
         event.preventDefault();
 
-        if (Object.keys(errors).length > 0) {
-            alert('Please complete the form');
-            return;
-        }
+        // if (Object.keys(errors).length > 0) {
+        //     alert('Please complete the form');
+        //     return;
+        // }
 
         const NewPoke = {
             name: form.name.toLowerCase(),

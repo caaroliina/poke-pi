@@ -4,7 +4,7 @@ const {
     getPokemonId,
     postPokemon,
     } = require('../controllers/pokemonControllers');
-    const { Type } = require('../db');
+const { Type } = require('../db');
 
 const getPokemonHandler = async (req, res) => {
     const { name } = req.query;
@@ -14,7 +14,7 @@ const getPokemonHandler = async (req, res) => {
             if (pokemonByName) {
                 return res.json(pokemonByName);
             } else {
-                return res.send(`${name} no fue encontrado`);
+                return res.send(`${name} not found`);
             }
         } else {
             const allPokemons = await getPokemons();
@@ -30,7 +30,7 @@ const getPokemonIdHandler = async (req, res) => {
     try {
         const pokemonId = await getPokemonId(id);
         if (pokemonId.length === 0) {
-            return res.send('No puede ser 0');
+            return res.send(`Can't be 0`);
         } else {
             return res.json(pokemonId);
         }

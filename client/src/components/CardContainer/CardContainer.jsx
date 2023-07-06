@@ -136,7 +136,7 @@ const CardContainer = () => {
                         <Card
                             key={pokemon.id}
                             id={pokemon.id}
-                            name={pokemon.name}
+                            name={pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1).toLowerCase()}
                             image={pokemon.image}
                             height={pokemon.height}
                             weight={pokemon.weight}

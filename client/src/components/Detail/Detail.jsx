@@ -7,8 +7,7 @@ import style from './Detail.module.css';
 const Detail = () => {
     const { id } = useParams();
     const dispatch = useDispatch();
-    const state = useSelector((state) => state.detail);
-    const pokemon = state;
+    const pokemon = useSelector((state) => state.detail);
     useEffect(() => {
         dispatch(getPokemonDetail(id));
     }, [dispatch, id]);

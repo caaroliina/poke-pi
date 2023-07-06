@@ -1,5 +1,6 @@
 import {
     GET_POKEMONS,
+    GET_POKEMON_BYNAME,
     GET_POKEMON_ID,
     GET_TYPES,
     POST_POKEMON,
@@ -20,25 +21,27 @@ import {
     },
   };
   
-  const reducer = (state = initialState, action) => {
-    switch (action.type) {
+  const reducer = (state = initialState, {type, payload}) => {
+    switch (type) {
       case GET_POKEMONS:
-        return { ...state, pokemons: action.payload };
+        return { ...state, pokemons: payload };
       case GET_POKEMON_ID:
-        return { ...state, detail: action.payload };
+        return { ...state, detail: payload };
+      case GET_POKEMON_BYNAME:
+        return { ...state, pokemons: payload };
       case GET_TYPES:
-        return { ...state, types: action.payload };
+        return { ...state, types: payload };
       case POST_POKEMON:
-        return { ...state, pokemons: action.payload };
+        return { ...state, pokemons: payload };
       case SET_PAGE:
         return {
           ...state,
-          pagination: { ...state.pagination, thisPage: action.payload },
+          pagination: { ...state.pagination, thisPage: payload },
         };
       case SET_TOTAL_PAGES:
         return {
           ...state,
-          pagination: { ...state.pagination, totalPages: action.payload },
+          pagination: { ...state.pagination, totalPages: payload },
         };
       default:
         return { ...state };
