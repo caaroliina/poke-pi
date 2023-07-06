@@ -9,6 +9,30 @@
     padding: 1em;
 }
 
+.delete{
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+
+}
+
+.deleteButton{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 5em;
+    height: 1.5em;
+    background-color: rgb(123, 2, 2);
+    color: #ffffff;
+    margin: 0 1.6rem;
+    border-radius: 0.3em;
+}
+
+.deleteButton:hover{
+    color: #ffffff;
+    background-color: rgb(186, 0, 0);
+}
+
 .name{
     width: 100vw;
     height: 10%;

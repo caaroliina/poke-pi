@@ -55,7 +55,7 @@ const getPokemons = async () => {
     dbPokemons.push(pokeTypeFromObjToStr(pokemon));
   }
 
-  const apiPokemons = (await axios.get("https://pokeapi.co/api/v2/pokemon?limit=100")).data.results;
+  const apiPokemons = (await axios.get("https://pokeapi.co/api/v2/pokemon?limit=200")).data.results;
   
   const apiPokemonsUrl = await Promise.all(
     apiPokemons.map(async (element) => {
@@ -70,7 +70,7 @@ const getPokemons = async () => {
 const getPokemonsByName = async (PokeName) => {
   const name = PokeName.toLowerCase();
 
-  let PokemonByNameApi = await (await axios.get("https://pokeapi.co/api/v2/pokemon?limit=100")).data.results;
+  let PokemonByNameApi = await (await axios.get("https://pokeapi.co/api/v2/pokemon?limit=200")).data.results;
   let namesPoke = []
   for (pokes of PokemonByNameApi){
     namesPoke.push(pokes.name);
@@ -155,10 +155,18 @@ const postPokemon = async ({
   return newPokemon;
 };
 
+const deletePokemon = async (pokeId) => {
+  PokemonByID = await Pokemon.findOne({
+    where: { id: pokeId }
+  })
+  await PokemonByID.destroy();
+}
+
 module.exports = {
   getPokemonsByName,
   getPokemons,
   getPokemonId,
   postPokemon,
+  deletePokemon
 };
 

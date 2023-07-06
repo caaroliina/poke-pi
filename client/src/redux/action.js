@@ -1,6 +1,7 @@
 import axios from "axios";
 import {
   GET_POKEMONS,
+  DELETE_POKEMON,
   GET_POKEMON_BYNAME,
   GET_POKEMON_ID,
   GET_TYPES,
@@ -21,16 +22,28 @@ export const getPokemons = () => {
   };
 };
 
+export const deletePokemon = (id) => {
+  return function(dispatch) {
+    const pokemon = axios.delete(`http://localhost:3001/pokemon/${id}`)
+    dispatch({type: DELETE_POKEMON, payload: pokemon})
+  }
+}
+
 export const getPokemonName = (name) => {
-  return async function(dispatch){
-    const response = await axios.get(`http://localhost:3001/pokemon?name=${name}`)
-    const pokemon = response.data
-    dispatch({
-        type: GET_POKEMON_BYNAME,
-        payload: pokemon,
-    })
-}
-}
+  return function(dispatch) {
+    fetch(`http://localhost:3001/pokemon?name=${name}`)
+      .then(response => response.json())
+      .then(pokemon => {
+        dispatch({
+          type: GET_POKEMON_BYNAME,
+          payload: pokemon,
+        });
+      })
+      .catch(error => {
+        console.log(error);
+      });
+  };
+};
 
 export const getPokemonDetail = (id) => {
   return async (dispatch) => {

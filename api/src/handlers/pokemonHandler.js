@@ -1,5 +1,6 @@
 const {
     getPokemonsByName,
+    deletePokemon,
     getPokemons,
     getPokemonId,
     postPokemon,
@@ -24,6 +25,16 @@ const getPokemonHandler = async (req, res) => {
         return res.status(400).send({ error: error.message });
     }
 };
+
+const deletePokemonHandler = async (req, res) => {
+    const { id } = req.params;
+try {
+    const deletePoke = await deletePokemon(id);
+    return res.send(`Successfully removed`);
+} catch (error) {
+    return res.status(400).send({ error: error.message });
+}
+}
 
 const getPokemonIdHandler = async (req, res) => {
     const { id } = req.params;
@@ -63,15 +74,7 @@ const postPokemonHandler = async (req, res) => {
             poketTypes.push(typeDB);
         }
         if (poketTypes.length) {
-            const newPokemon = await postPokemon({
-                name,
-                sprites,
-                hp,
-                attack,
-                defense,
-                speed,
-                height, 
-                weight,
+            const newPokemon = await postPokemon({ name, sprites, hp, attack, defense, speed, height,  weight,
                 types: poketTypes.map(type => type.name),
             });
             return res.status(201).json(newPokemon);
@@ -101,4 +104,5 @@ module.exports = {
     getPokemonHandler,
     getPokemonIdHandler,
     postPokemonHandler,
+    deletePokemonHandler
 };

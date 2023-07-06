@@ -1,5 +1,6 @@
 import {
     GET_POKEMONS,
+    DELETE_POKEMON,
     GET_POKEMON_BYNAME,
     GET_POKEMON_ID,
     GET_TYPES,
@@ -25,6 +26,8 @@ import {
     switch (type) {
       case GET_POKEMONS:
         return { ...state, pokemons: payload };
+      case DELETE_POKEMON:
+        return {...state, pokemons: payload};
       case GET_POKEMON_ID:
         return { ...state, detail: payload };
       case GET_POKEMON_BYNAME:

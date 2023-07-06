@@ -33,8 +33,8 @@ export default function validate(form){
     if (isNaN(height) || height < 1 || height > 100) error.height = "Height should be between 1 and 100";
 
     // image
-    const urlRegex = /(http(s?):)([/|.|\w|\s|-])*\.(?:jpg|gif|png)/;
-    if (!urlRegex.test(form.img)) error.img = "Invalid URL";
+    // const urlRegex = /(http(s?):)([/|.|\w|\s|-])*\.(?:jpg|gif|png)/;
+    // if (!urlRegex.test(form.img)) error.img = "Invalid URL";
 
     // types
     if (!form.types.length) error.types = "Enter a type name";

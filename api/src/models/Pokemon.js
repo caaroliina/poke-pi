@@ -14,7 +14,6 @@ module.exports = (sequelize) => {
       allowNull: false,
       unique: true,
       validate: {
-        is: /^[a-zA-Z]+$/,
         len: {
           args:[1, 20],
           msg: "name must be between 1 and 20 characters"
