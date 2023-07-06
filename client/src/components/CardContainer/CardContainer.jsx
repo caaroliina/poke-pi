@@ -149,12 +149,12 @@ const CardContainer = () => {
                     );
                     })
                 ) : 
-                (<div className={style.loading}>
-                  <div className={style.load}>
-                    <h1> Loading pokedex </h1>
-                    <img src="https://i.pinimg.com/originals/5c/67/db/5c67dbb5db0b80a4889c9531d7dedc5a.gif" alt="" />
-                  </div>
-                </div>) 
+                (pokemons &&
+                (<div className={style.load}> 
+                  <h1>Loading Pokemons</h1>
+                  <h2>enjoy the dance</h2>
+                  <img src="https://i.pinimg.com/originals/fc/97/aa/fc97aa05928cd575d7ac43dcc76e2cbd.gif" alt="eve bailando" />
+                </div>)) 
                 }
               </div>
             </div>

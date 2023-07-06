@@ -13,6 +13,7 @@ const Form = () => {
     const types = useSelector((state) => state.types);
 
     //locals states
+    const [isFormValid, setIsFormValid] = useState(false);
     const [form, setForm] = useState({
         name: "",
         image: "",
@@ -35,33 +36,44 @@ const Form = () => {
     
     const changeHandler = (event) => {
         const { name, value } = event.target;
-        setForm((prevForm) => ({
-            ...prevForm,
-            [name]: value,
-        }));
-
         setErrors(validate({
             ...form,
             [name]: value,
         }));
+
+        setForm((prevForm) => ({
+            ...prevForm,
+            [name]: value,
+        }));
     };
+
+    useEffect(() => {
+        const hasErrors = Object.values(errors).some(error => error !== '');
+        setIsFormValid(!hasErrors);
+    }, [errors]);
 
     const selectHandler = (event) => {
         if (event.target.name === "type 1") {
             const type1 = event.target.value;
+            let type2 = form.types[1];
+
+            if (type2 === type1) {
+                type2 = "";
+            }
+
             setForm((prevForm) => ({
                 ...prevForm,
-                types: [type1, prevForm.types[1] || ""],
+                types: [type1, type2],
             }));
             const availableTypes = types.filter((type) => type.name !== type1);
             setAvailableTypes2(availableTypes);
         }
         
-
         if (event.target.name === "type 2") {
+            const type2 = event.target.value;
             setForm((prevForm) => ({
                 ...prevForm,
-                types: [prevForm.types[0] || "", event.target.value],
+                types: [prevForm.types[0] || "", type2],
             }));
         }
     };
@@ -69,10 +81,10 @@ const Form = () => {
     const submitHandler = (event) => {
         event.preventDefault();
 
-        // if (Object.keys(errors).length > 0) {
-        //     alert('Please complete the form');
-        //     return;
-        // }
+        if (!isFormValid) {
+            alert('Please complete the form');
+            return;
+        }
 
         const NewPoke = {
             name: form.name.toLowerCase(),
@@ -87,12 +99,12 @@ const Form = () => {
         };
 
         try {
-            alert(`Wild ${form.name} appeared`);
             dispatch(createPokemon(NewPoke));
             dispatch(getPokemons());
+            alert(`Wild ${form.name} appeared`);
             navigate("/home");
         } catch (error) {
-            alert('Please complete the form');
+            alert('Error while creating the pokemon');
         }
     };
 
@@ -258,17 +270,12 @@ const Form = () => {
                         <label className={style.select}>Select Type 2</label>
                         
                         <select className={style.input} name="type 2" onChange={(select) => selectHandler(select)}>
-                        {availableTypes2?.map((type) => (
-                            type ===  form.types ?
-                            <option value={type.name} key={type.name}>
-                                {type.name}
-                            </option>
-                            :
-                            <option value={type.name} key={type.name}>
-                                {type.name}
-                            </option>
-                        ))}
-                        </select>
+                            {availableTypes2?.map((type) => (
+                                <option value={type.name} key={type.name}>
+                                    {type.name}
+                                </option>
+                            ))}
+                            </select>
                     </div>
                     ) : (
                     <div></div>
@@ -282,7 +289,7 @@ const Form = () => {
                     )}
                 </div>
                 <div className={style.buttonContainer}>
-                    <button type="submit" className={style.button}>SUBMIT</button>
+                    <button type="submit" className={style.button} disabled={!isFormValid}>SUBMIT</button>
                 </div>
             </form>
         </div>
